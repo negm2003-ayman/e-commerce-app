@@ -1,0 +1,37 @@
+<section class="w-[75%] mx-auto">
+    <h1 class="text-center text-green-600 text-4xl py-4">Wish List</h1>
+
+    @for (prod of wishlistDetails; track prod._id) {
+    <div class="grid md:grid-cols-[10%_minmax(0,1fr)] gap-4 py-3 border-b">
+        <div>
+            <img [src]="prod.imageCover" class="w-full h-[100px] object-contain" alt="">
+        </div>
+
+        <div class="flex justify-between items-center">
+            <div>
+                <h4 class="text-green-500 mb-2"> {{prod.category.name}} </h4>
+                <h3>{{prod.title}} </h3>
+                <div class="flex items-center gap-5">
+                    <h4 class="text-green-500 my-2">price: {{prod.price}} EGP</h4>
+                    <p><i class="fa-solid fa-star text-yellow-300"></i> {{prod.ratingsAverage}} </p>
+                </div>
+                <button class="cursor-pointer" (click)="deleteProduct(prod._id)">
+                    <i class="fas fa-trash-can text-green-600 mx-1"></i>Remove
+                </button>
+            </div>
+            <div class="flex items-center gap-3">
+                <button class="py-2 px-6 text-white rounded-lg w-[100%] bg-green-700 cursor-pointer "
+                    (click)="addProductToCart(prod._id)">Add To
+                    Cart</button>
+            </div>
+        </div>
+
+    </div>
+    }
+    @if (wishlistDetails.length === 0) {
+    <div class="w-[700px] h-[100px] m-auto  bg-gray-100 rounded-4xl flex justify-center items-center shadow">
+        <p class="text-green-500 text-center text-3xl m-auto block">No Items Here</p>
+    </div>
+    }
+
+</section>

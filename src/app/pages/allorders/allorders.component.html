@@ -1,0 +1,54 @@
+<section class="w-[80%] m-auto mt-10">
+    <h1 class="text-center text-green-600 text-4xl py-4">All Orders</h1>
+
+    @if (allOrders.length > 0) {
+    <div>
+        @for (order of allOrders; track order._id) {
+        <div class="mt-6">
+            <h1 class="fa-bold text-3xl mb-2">Order #{{$index + 1}} </h1>
+        </div>
+
+        <div class="border border-green-700 shadow rounded  flex flex-col gap-5">
+            <div class="bg-green-700 w-full py-2">
+                <h1 class="mx-4 text-white text-2xl">Order Information</h1>
+            </div>
+            <div class="flex flex-col gap-5 mx-4 mb-5">
+                <p><strong>Order Id:</strong> #{{order.id}} </p>
+                <p><strong class="me-2"> Is Delivered:</strong><span class="px-1 py-0 rounded text-white"
+                        [ngClass]="order.isDelivered ? 'bg-green-600' :  'bg-red-600'">{{order.isDelivered}}</span> </p>
+                <p><strong class="me-2">Is Paid:</strong><span class="px-1 py-0 rounded text-white"
+                        [ngClass]="order.isPaid? 'bg-green-600' :  'bg-red-600'">{{order.isPaid}}</span> </p>
+                <p><strong class="me-2">Payment Type:</strong><span
+                        class="px-1 py-0 rounded text-white bg-green-600">{{order.paymentMethodType}}</span> </p>
+
+            </div>
+        </div>
+
+        <div class="border border-gray-700 shadow rounded  flex flex-col gap-2 mt-6 bg-gray-200">
+            <div class="bg-gray-700 w-full py-2">
+                <h1 class="mx-4 text-white text-2xl">order Item</h1>
+            </div>
+            <div class="flex border-b border-gray-500" *ngFor="let item of order.cartItems">
+                <div class="w-[20%] m-auto block ms-6 mb-5">
+                    <img class="w-[190px]" [src]=" item.product.imageCover " [alt]="item.product.title">
+                </div>
+                <div class="flex flex-col gap-2 my-[5px] mx-4  w-[80%]">
+                    <p><strong>Title:</strong> {{ item.product.title }} </p>
+                    <p><strong> Price:</strong> {{item.price}} EGP</p>
+                    <p><strong>Quantity:</strong> {{item.product.ratingsQuantity}} </p>
+                    <p><strong>Brand: </strong>{{item.product.brand.name}} </p>
+                    <p><strong>Category: </strong>{{item.product.category.name}} </p>
+                </div>
+            </div>
+
+        </div>
+        }
+    </div>
+    }
+    @else {
+    <div class="w-[700px] h-[100px] m-auto  bg-gray-100 rounded-4xl flex justify-center items-center shadow">
+        <p class="text-green-500 text-center text-3xl m-auto block">No Items Here</p>
+    </div>
+    }
+
+</section>

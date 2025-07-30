@@ -1,0 +1,71 @@
+<section class="w-[75%] mx-auto">
+    <h1 class="text-center text-green-600 text-4xl py-4">Shop Cart</h1>
+
+    @if (cartDetails.totalCartPrice) {
+    <button class="text-xs bg-red-900 text-white rounded px-6 block ms-auto py-1 cursor-pointer"
+        (click)="deleteCart()">Clear Cart</button>
+    <h3 class="text-green-600 my-1">Tolat cart price : {{cartDetails.totalCartPrice}} </h3>
+
+    @for (prod of cartDetails.products; track prod.product._id) {
+    <div class="grid md:grid-cols-[10%_minmax(0,1fr)] gap-4 py-3 border-b">
+        <div>
+            <img [src]="prod.product.imageCover" class="w-full h-[100px] object-contain" alt="hghghg">
+        </div>
+
+        <div class="flex justify-between items-center">
+            <div>
+                <h3>{{prod.product.title}} </h3>
+                <h4 class="text-green-500 my-2">price: {{prod.price}} EGP</h4>
+                <button class="cursor-pointer" (click)="deleteItem(prod.product._id)">
+                    <i class="fas fa-trash-can text-green-600 mx-1"></i>Remove
+                </button>
+            </div>
+            <div class="flex items-center gap-3">
+                <button (click)="updateQuantity(prod.count + 1 , prod.product._id)"
+                    class="text-3xl text-green-600 cursor-pointer">
+                    <i class="fa-regular fa-square-plus"></i>
+                </button>
+                <span> {{prod.count}} </span>
+                <button (click)="updateQuantity(prod.count - 1 , prod.product._id)"
+                    class="text-3xl text-green-600 cursor-pointer">
+                    <i class="fa-regular fa-square-minus"></i>
+                </button>
+            </div>
+        </div>
+
+    </div>
+    }
+
+    <div class="my-3">
+        <div>
+            <input class="text-green-600 me-2 focus:ring-0" type="radio" id="online" name="Payment" value="online"
+                [(ngModel)]="selected" checked>
+            <label for="online">Online</label>
+        </div>
+
+        <div>
+            <input class="text-green-600 me-2 focus:ring-0" type="radio" id="cash" name="Payment" [(ngModel)]="selected"
+                value="cash">
+            <label for="cash"> Cash</label>
+        </div>
+
+    </div>
+
+    <button [routerLink]="['/checkout' , cartDetails._id]"
+        class="py-2 px-4 my-3 text-white block me-auto bg-green-700 cursor-pointer rounded-xl"
+        *ngIf="selected === 'online'">Payment Online</button>
+
+    <button [routerLink]="['/cash' , cartDetails._id]"
+        class="py-2 px-4 my-3 text-white block me-auto bg-green-700 cursor-pointer rounded-xl"
+        *ngIf="selected === 'cash'">Payment
+        Cash</button>
+    }@else {
+    <div>
+        <img class="w-100 block m-auto" src="/images/empty-cart.svg" alt="">
+
+    </div>
+    }
+
+
+
+</section>

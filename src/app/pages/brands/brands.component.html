@@ -1,0 +1,46 @@
+<section class="w-[80%] m-auto">
+    <div>
+        <h3 class="text-green-600 fa-bold py-4 fa-2x text-center">All Brands</h3>
+        <div class="parent grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
+            @for (brand of myBrands; track brand._id) {
+            <div class=" border-2 border-gray-300 rounded-md overflow-hidden hover:shadow-md hover:shadow-green-600 transition-shadow "
+                (click)="openModal(brand)">
+                <div>
+                    <img class="w-full" [src]="brand.image" alt="sdsd">
+                </div>
+                <div class="text-center mb-3">
+                    <p> {{brand.name}} </p>
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+
+
+    <!-- Modal Overlay -->
+    <div class="fixed inset-0 z-50 flex items-center justify-center bg-white/50  bg-opacity-50 transition-all duration-300"
+        [class.hidden]="!isModalOpen">
+        <!-- Modal Box -->
+        <div class="bg-white rounded-lg shadow-lg p-6 max-w-md w-full transition-all duration-300 transform"
+            [class.opacity-0]="!isAnimating" [class.-translate-y-10]="!isAnimating" [class.opacity-100]="isAnimating"
+            [class.translate-y-0]="isAnimating">
+            <button class="absolute top-2 right-2 text-gray-400 hover:text-black text-2xl" (click)="closeModal()">
+                &times;
+            </button>
+
+            <h2 class="text-2xl font-semibold text-green-600 text-center mb-2">
+                {{ selectedBrand?.name }}
+            </h2>
+            <img [src]="selectedBrand?.image" class="w-40 mx-auto my-4" />
+            <p class="text-center text-gray-500">{{ selectedBrand?.slug }}</p>
+
+            <div class="text-center mt-4">
+                <button (click)="closeModal()" class="bg-gray-700 text-white py-2 px-4 rounded hover:bg-gray-900">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+</section>

@@ -1,0 +1,52 @@
+<h3 class="text-green-600 fa-bold py-4 fa-2x text-center">All Products</h3>
+
+
+<input type="text" placeholder="Search here" [(ngModel)]="searchItem"
+    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-1/2 mx-auto p-2.5 mb-4">
+
+<section class="w-[80%] m-auto">
+    <div class="">
+        <div class="parent grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3">
+            @for (prod of myProduct | search : searchItem ; track prod._id) {
+            <div class="card border border-green-400/50 rounded-md overflow-hidden shadow relative p-1">
+                <div [routerLink]="['/details' , prod._id]">
+                    <div class="card-img relative">
+                        <img [src]="prod.imageCover" class="w-full h-[250px] object-contain m" alt="">
+
+                        <i (click)="addProductToWishlist(prod._id)" (click)="$event.stopPropagation()"
+                            [class]="isWishlistProduct(prod._id)? 'fas' : 'fa-regular'"
+                            onclick="this.classList.remove('animate-bounce'); void this.offsetWidth; this.classList.add('animate-bounce'); setTimeout(() => this.classList.remove('animate-bounce'), 1000);"
+                            class=" fa-heart text-red-600 cursor-pointer text-4xl absolute top-1 left-1 transition-all duration-300"></i>
+
+                    </div>
+                    <div class="card-body px-2 py-4">
+                        <h4 class="text-green-500 text-xs"> {{prod.category.name}} </h4>
+                        <h3 class="font-medium"> {{prod.title.split(" " , 2)}} </h3>
+                        <div class="flex justify-between items-center">
+                            <span> {{prod.price |currency :'EGP'}}</span>
+                            <div class="flex items-center">
+                                <i class="fas fa-star text-yellow-300"></i>
+                                <span class="text-gray-500"> {{prod.ratingsAverage}} </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex justify-around mx-3">
+                    <button (click)="addProductToCart(prod._id)" onclick="
+                        this.classList.remove('animate-scale');
+                        void this.offsetWidth;
+                        this.classList.add('animate-scale');
+                        setTimeout(() => this.classList.remove('animate-scale'), 1000);"
+                        class="py-2 px-4 text-white rounded-lg w-[90%] bg-green-700 cursor-pointer transition-all duration-300">Add
+                        To
+                        Cart</button>
+
+                </div>
+
+
+            </div>
+            }
+        </div>
+    </div>
+</section>

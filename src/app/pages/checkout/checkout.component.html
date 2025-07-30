@@ -1,0 +1,40 @@
+<div class="flex">
+
+    <div class="image my-auto w-[49%]">
+        <img src="/images/Credit card-cuate.svg" alt="">
+    </div>
+
+    <section class="form bg-gray-200 shadow-lg rounded-lg mx-auto p-4 my-auto w-[49%]">
+        <h1 class="text-center text-green-600 font-bold text-3xl">Pay now :-</h1>
+
+        <form [formGroup]="paymentForm" (ngSubmit)="submitForm()">
+
+
+            <div class="mb-6">
+                <label for="uDetails" class="block mb-2 text-sm font-light text-green-600">Details :</label>
+                <input formControlName="details" type="text" id="uDetails" placeholder="Enter your details"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5">
+            </div>
+            <div class="mb-6">
+                <label for="uPhone" class="block mb-2 text-sm font-light text-green-600">Phone :</label>
+                <input formControlName="phone" type="tel" id="uPhone" placeholder="Enter your phone"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5">
+            </div>
+            <div class="mb-6">
+                <label for="uCity" class="block mb-2 text-sm font-light text-green-600">City :</label>
+                <input formControlName="city" type="text" id="uCity" placeholder="Enter your city"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5">
+            </div>
+
+            <button type="submit" [disabled]="paymentForm.invalid" class=" bg-green-600 text-white py-2 px-4 rounded-lg cursor-pointer m-auto mt-3 block shadow-lg
+            hover:bg-green-500 transition disabled:bg-green-300">
+                Submit
+
+            </button>
+
+
+        </form>
+
+
+    </section>
+</div>

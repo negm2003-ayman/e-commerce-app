@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+@import "flowbite/src/themes/default";
+@plugin "flowbite/plugin";
+@source "../node_modules/flowbite";
+
+* {
+  font-family: "PT Serif", serif;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  background-color: #fff;
+  border-left: 2px solid #eee;
+  box-shadow: 0 0 21px #0003 inset;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #066006;
+  box-shadow: 0 0 10px #eeeeee8c inset;
+  border-radius: 100vh;
+}
+
+/* @import 'ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
+@import 'ngx-owl-carousel-o/lib/styles/scss/owl.theme.default'; */
+/* You can add global styles to this file, and also import other style files */
