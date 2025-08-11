@@ -7,7 +7,11 @@ export const loadingInterceptor: HttpInterceptorFn = (req, next) => {
 
   const ngxSpinnerService = inject(NgxSpinnerService)
 
-  ngxSpinnerService.show()
+  if (req.url.includes('signin') || (req.url.includes('signup'))) {
+    
+    ngxSpinnerService.show()
+  }
+
   return next(req).pipe( finalize(()=>{
     ngxSpinnerService.hide()
   }) );

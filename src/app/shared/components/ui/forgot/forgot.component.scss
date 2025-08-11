@@ -1,0 +1,35 @@
+@media screen and (max-width:1000px){
+    .image{
+        display: none;
+    }
+    .form{
+        width: 70%;
+        margin: auto;
+    }
+
+    .space{
+        padding-block: 100px;
+    }
+
+}
+
+@media screen and (max-width:445px){
+
+    .space{
+        padding-block: 60px;
+    }
+}
+
+@media screen and (max-width:735px){
+    .space{
+        padding-block: 120px;
+    }
+}
+
+@media screen and (max-width:741){
+
+}
+
+
+
+
